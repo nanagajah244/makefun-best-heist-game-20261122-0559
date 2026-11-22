@@ -9,7 +9,7 @@
 // itself. Runs twice, both runs byte-identical: the copy is a plain
 // file copy and the dossier is deterministic over the same tree.
 
-import { cpSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildDossier } from './vendor/makefun-game.ts';
@@ -19,7 +19,6 @@ const outDir = process.env.MAKEFUN_OUTPUT_DIR
   ? resolve(process.env.MAKEFUN_OUTPUT_DIR)
   : '/output';
 
-rmSync(outDir, { recursive: true, force: true });
 mkdirSync(outDir, { recursive: true });
 cpSync(join(repoRoot, 'game'), join(outDir, 'game'), { recursive: true });
 cpSync(join(repoRoot, 'screenshots'), join(outDir, 'screenshots'), { recursive: true });
